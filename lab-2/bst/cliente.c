@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "bst.h"
 
 int main()
@@ -8,14 +10,14 @@ int main()
     int n;
     scanf("%d", &n);
 
-    int chave;
+    srand(time(NULL));
     for (int i = 0; i < n; i++)
     {
-        scanf("%d", &chave);
-        adicionaChaveArvore(arvore, chave);
+        adicionaChaveArvore(arvore, rand());
     }
 
-    imprimeArvore(arvore);
+    printf("Altura da arvore: %d\n", alturaArvore(arvore));
+
     liberaArvore(arvore);
 
     return 0;

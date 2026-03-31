@@ -23,7 +23,7 @@ Arvore *inicializaArvore()
     return arvore;
 }
 
-Node *insereNode(Node *node, int chave)
+static Node *insereNode(Node *node, int chave)
 {
     if (node == NULL)
     {
@@ -50,7 +50,32 @@ void adicionaChaveArvore(Arvore *arvore, int chave)
     arvore->raiz = insereNode(arvore->raiz, chave);
 }
 
-void imprimeNode(Node *node)
+static int alturaNode(Node *node)
+{
+    if (node == NULL)
+    {
+        return -1;
+    }
+
+    int esq = alturaNode(node->esquerda);
+    int dir = alturaNode(node->direita);
+
+    if (esq > dir)
+    {
+        return esq + 1;
+    }
+    else
+    {
+        return dir + 1;
+    }
+}
+
+int alturaArvore(Arvore *arvore)
+{
+    return alturaNode(arvore->raiz);
+}
+
+static void imprimeNode(Node *node)
 {
     if (node == NULL)
     {
@@ -76,7 +101,7 @@ void imprimeArvore(Arvore *arvore)
     printf("\n");
 }
 
-void liberaNode(Node *node)
+static void liberaNode(Node *node)
 {
     if (node == NULL)
         return;
